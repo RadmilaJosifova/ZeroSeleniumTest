@@ -67,21 +67,34 @@ public class TransferFundsFeatureTest {
        transferFundsPage.fullFieldAmount();
        transferFundsPage.fullFieldDescription();
        transferFundsPage.buttonContinue();
+       transferFundsPage.submitButtonForTransferMoneyAndMakePayments();
 
-        transferFundsPage.submitButtonForTransferMoneyAndMakePayments();
-        String expectedMessage = "You successfully submitted your transaction.";
+       String expectedUrl2= "transfer-funds-confirm.html";
+
+       String currentUrlPage = driver.getCurrentUrl();
+
+       boolean correctUrl = currentUrlPage.contains(expectedUrl2);
+
+
+      String expectedMessage = "You successfully submitted your transaction.";
 
        Assert.assertEquals(transferFundsPage.getTextFieldSucsessfulSubmitedTransaction(),expectedMessage);
 
-        transferFundsPage.finalAmountGetText();
-        String expectedMessage2 ="$ 300";
-        Assert.assertEquals(transferFundsPage.finalAmountGetText(),expectedMessage2);
-    }
+        transferFundsPage.finalSavingsGetText();
+        String expectedMessage2 ="Savings";
+        Assert.assertEquals(transferFundsPage.finalSavingsGetText(),expectedMessage2);
 
-//   @AfterClass
-//  public void afterClass() {
-//
-//        driver.close();
-//       driver.quit();
-//   }
+       // transferFundsPage.finalAmountGetText();
+     //   String expectedMessage3 ="$ 300";
+     //  Assert.assertEquals(transferFundsPage.finalAmountGetText(),expectedMessage2);
+
+
+   }
+
+     @AfterClass
+    public void afterClass() {
+
+      driver.close();
+      driver.quit();
+  }
 }
