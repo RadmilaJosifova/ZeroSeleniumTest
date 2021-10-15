@@ -50,12 +50,11 @@ public class TransferFundsPage extends BasePage {
     }
 
     public void fullFieldDescription() {
-        description.sendKeys("prefrli");
+        clearAndSendKeys(description,"prefrli");
     }
 
     public void buttonContinue() {
-        buttonContinue.click();
-    }
+    waitForElementToBeClickableAndClick(buttonContinue);    }
 
     public void submitButtonForTransferMoneyAndMakePayments() {
         buttonSubmit.click();
