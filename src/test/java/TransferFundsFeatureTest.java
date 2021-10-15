@@ -60,41 +60,28 @@ public class TransferFundsFeatureTest {
 
 
 
-
-    }
-   @Test
-    public void successSubmitTransaction(){
-       transferFundsPage.fullFieldAmount();
-       transferFundsPage.fullFieldDescription();
-       transferFundsPage.buttonContinue();
-       transferFundsPage.submitButtonForTransferMoneyAndMakePayments();
-
        String expectedUrl2= "transfer-funds-confirm.html";
 
-       String currentUrlPage = driver.getCurrentUrl();
+       String currentUrlPage1 = driver.getCurrentUrl();
 
-       boolean correctUrl = currentUrlPage.contains(expectedUrl2);
+       boolean correctUrl2 = currentUrlPage1.contains(expectedUrl2);
 
 
-      String expectedMessage = "You successfully submitted your transaction.";
+      String expectedMessage1 = "You successfully submitted your transaction.";
+      String expectedToAccount = "Savings";
+      String expectedAmount = "$ 300";
 
-       Assert.assertEquals(transferFundsPage.getTextFieldSucsessfulSubmitedTransaction(),expectedMessage);
-
-        transferFundsPage.finalSavingsGetText();
-        String expectedMessage2 ="Savings";
-        Assert.assertEquals(transferFundsPage.finalSavingsGetText(),expectedMessage2);
-
-       // transferFundsPage.finalAmountGetText();
-     //   String expectedMessage3 ="$ 300";
-     //  Assert.assertEquals(transferFundsPage.finalAmountGetText(),expectedMessage2);
+       Assert.assertEquals(transferFundsPage.getTextFieldSucsessfulSubmitedTransaction(),expectedMessage1);
+       Assert.assertEquals(transferFundsPage.toAccountText(),expectedToAccount);
+       Assert.assertEquals(transferFundsPage.amountText(),expectedAmount);
 
 
    }
 
      @AfterClass
-    public void afterClass() {
+     public void afterClass() {
 
-      driver.close();
-      driver.quit();
+     driver.close();
+     driver.quit();
   }
 }

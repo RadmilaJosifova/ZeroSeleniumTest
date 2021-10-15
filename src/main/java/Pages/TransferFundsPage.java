@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class TransferFundsPage extends BasePage {
     public TransferFundsPage(WebDriver driver) {
         super(driver);
@@ -31,11 +33,9 @@ public class TransferFundsPage extends BasePage {
     @FindBy(css = "div[class=\"alert alert-success\"]")
     WebElement getText;
 
-    @FindBy(css = "div[class=\"span3\"]")
-    WebElement finalSavings;
+    @FindBy(css = "div[class=\"row\"]>div[class=\"span3\"]")
+    List<WebElement> results;
 
-    @FindBy(css = "div[class=\"span3\"]>div>div")
-    WebElement finalAmount;
 
     public void clickToAccountDropDown() {
         toAccountDropDown.click();
@@ -70,11 +70,15 @@ public class TransferFundsPage extends BasePage {
         return getText.getText();
     }
 
-    public String finalSavingsGetText() {
-        return finalSavings.getText();
+    public String fromAccountText() {
+        return results.get(0).getText();
     }
 
-    public String finalAmountGetText() {
-        return finalAmount.getText();
+    public String toAccountText() {
+        return results.get(1).getText();
+    }
+
+    public String amountText() {
+        return results.get(2).getText();
     }
 }
